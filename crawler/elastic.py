@@ -92,6 +92,8 @@ class ES(object):
         
         return response['hits']['hits']
 
+    # def bulk_add_doc(self, )
+
 
 # es = ES()
 # es.add_doc("Test", "test.com", "abcd");

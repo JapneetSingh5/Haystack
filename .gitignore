@@ -1,2 +1,4 @@
 *.class
 *.log
+crawler/dump.json
+crawler/scraped.pickle
