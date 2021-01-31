@@ -1,6 +1,8 @@
 from datetime import datetime
 from elasticsearch import Elasticsearch
+from elasticsearch import helpers
 import base64
+import json
 
 # es = Elasticsearch()
 
@@ -24,7 +26,7 @@ import base64
 
 class ES(object):
     index = "webpages"
-    def __init__(self, host='elasticsearch', port=9200):
+    def __init__(self, host='localhost', port=9200):
         self.es = Elasticsearch([{
             'host':host,
             'port':9200
@@ -34,34 +36,7 @@ class ES(object):
 
     def create_index(self):
         if not self.es.indices.exists(index=self.index):
-            self.es.indices.create(index=self.index, body={
-                'settings': {
-                    'analysis': {
-                        'analyzer': {
-                            'english_exact': {
-                                'tokenizer': 'standard',
-                                'filter': [
-                                    'lowercase'
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                'mappings': {
-                    'properties': {
-                        'content': {
-                            'type': 'text',
-                            'analyzer': 'english',
-                            'fields': {
-                                'exact': {
-                                    'type': 'text',
-                                    'analyzer': 'english_exact'
-                                    }
-                                }
-                            }
-                        }
-                    }
-                })
+            self.es.indices.create(index=self.index)
 
     def gen_id(self, url):
         url_bytes = url.encode('ascii')
@@ -70,31 +45,53 @@ class ES(object):
         return base64_url
 
 
-    def add_doc(self, title, url, content):
-        self.es.index(index=self.index, doc_type='_doc', id=self.gen_id(url), body={
-            'title': title,
-            'url': url,
-            'content': content
-            })
+    def add_doc(self, dic):
+        self.es.index(index=self.index, doc_type='_doc', id=self.gen_id(dic['url']), body=dic)
 
+    def bulk_add(self, file):
+        def gendata():
+            fp = open(file)
+            doc = json.load(fp)
+            del doc[335]
+            del doc[476]
+            del doc[1234]
+            del doc[2275]
+            # print(len(doc))
+            for i in range(len(doc)):
+                yield {
+                    "_id": self.gen_id(doc[i]['url']),
+                    "_op_type":"index",
+                    "_index": self.index,
+                    # "_type": "_doc",
+                    "doc": doc[i]
+                }
+        helpers.bulk(self.es, gendata())
 
 
     def search(self, query_string):
-        response = self.es.search(index=self.index, doc_type='_doc', body={
-            'query': {
-                'simple_query_string': {
-                    'fields': ['content'],
-                    'quote_field_suffix': '.exact',
-                    'query': query_string
+        fuzziness = 3
+        if len(query_string)<3:
+            fuzziness = 0 
+        elif len(query_string)<10:
+            fuzziness = 3
+        else:
+            fuzziness = 5
+
+        res = self.es.search(index="webpages", body={
+            "query": {
+                # "match_all": {
+
+                # }
+                "match": {
+                    "doc.body": {
+                        "query" : query_string,
+                        "auto_generate_synonyms_phrase_query" : True,
+                        "lenient" : True,
+                        "fuzziness" : fuzziness,
                     }
                 }
+            }
             })
-        
-        return response['hits']['hits']
+        return res['hits']
 
-    # def bulk_add_doc(self, )
-
-
-# es = ES()
-# es.add_doc("Test", "test.com", "abcd");
 
