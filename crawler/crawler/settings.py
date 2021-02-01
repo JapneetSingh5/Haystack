@@ -89,12 +89,13 @@ AUTOTHROTTLE_DEBUG = True
 
 # Feeds
 FEEDS = {
-    'scraped.pickle': {
-        'format': 'pickle',
-    },
-    # 'file:///home/arpit/code_etc/Haystack/visited.json': {
-    #     'format': 'json',
-    # }
+    'elastic': {
+        'format': 'elastic'
+    }
+}
+
+FEED_EXPORTERS = {
+    'elastic': 'crawler.elastic_exporter.ElasticExporter'
 }
 
 # Disable printing of items
