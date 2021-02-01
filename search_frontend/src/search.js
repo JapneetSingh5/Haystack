@@ -24,13 +24,15 @@ client.ping({
 });
 
 
-const Search = (term) => {
-  const [data, setData] = useState(null);
+const Search = (term, page, size) => {
+  // const [data, setData] = useState(null);
   const [searching, setState] = useState(true);
   const [{}, dispatch] = useStateValue();
   searching && client.search({
     index: "webpages", // Your index name for example crud 
     body: {
+      "from": (page-1)*size,
+      "size": size,
       "query": {
         "match": {
             "doc.body": {
@@ -40,12 +42,12 @@ const Search = (term) => {
     }
     }
   }).then(function (resp) {
-      setData(resp);
       setState(false);
       dispatch({
         type: actionTypes.SET_RESULTS,
-        data: data,
+        data: resp,
         term: term,
+        page: page,
       });
   }, function (err) {
     console.log(err.message);

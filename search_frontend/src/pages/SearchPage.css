@@ -1,6 +1,10 @@
 .searchPage{
     padding-lef: 20px;
 }
+
+.loader{
+    padding-left: 20%;
+}
 .searchPage__header {
     padding-left:20px;
     display: flex;
@@ -103,6 +107,7 @@
     text-decoration: none;
     color: #000;
     margin-bottom: 3px;
+    margin-left: 22px;
 }
 
 .searchPage__resultImage {

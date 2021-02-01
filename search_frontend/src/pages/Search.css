@@ -1,4 +1,5 @@
 .search__input {
+    outline: none;
     display: flex;
     align-items: center;
     border: 1px solid lightgray;
@@ -23,10 +24,12 @@
     padding: 8px 13px;
     font-size: medium;
     border: none;
+    outline: none;
 }
 
 .search__input>input:focus {
     outline-width: 0;
+    outline: none;
 }
 
 .search__inputIcon {

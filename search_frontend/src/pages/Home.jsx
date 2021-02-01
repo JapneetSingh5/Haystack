@@ -5,6 +5,7 @@ import AppsIcon from "@material-ui/icons/Apps";
 import { Avatar } from "@material-ui/core";
 import Search from "./Search";
 import logo from './LogoSVGWhiteBG.svg'
+import haystack from './haystack.png'
 
 function Home() {
   return (
@@ -16,8 +17,9 @@ function Home() {
       </div>
       <div className="home__body">
         <img
-          src="https://cdn.pixabay.com/photo/2014/12/21/23/53/hay-576266_960_720.png"
+          src={haystack}
           atl=""
+          height="150"
         />
         <div className="home__inputContainer">
           <Search />
