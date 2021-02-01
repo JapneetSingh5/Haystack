@@ -9,7 +9,7 @@ export default {
   },
   "hits" : {
     "total" : {
-      "value" : 2499,
+      "value" : 1,
       "relation" : "eq"
     },
     "max_score" : 1.0,

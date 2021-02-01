@@ -17,7 +17,7 @@ function Search({ hideButtons = false }) {
       type: actionTypes.SET_SEARCH_TERM,
       term: input,
     });
-    history.push("/search");
+    history.push(`/search/${input}`);
   };
   return (
     <form className="search">

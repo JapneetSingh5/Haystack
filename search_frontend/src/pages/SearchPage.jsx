@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchPage.css";
 import { useStateValue } from "../stateProvider";
-import search from "../search";
+import useSearch from "../search";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import SearchIcon from "@material-ui/icons/Search";
@@ -11,11 +11,13 @@ import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import RoomIcon from "@material-ui/icons/Room";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Response from "../response";
+import { actionTypes } from "../reducer";
+
 function SearchPage() {
-  const [{ term }] = useStateValue();
-  const { data } = search(term);
-  // const data = Response;
-  console.log(data);
+  const [{ term, data }] = useStateValue();
+  useSearch(term);
+  console.log(term)
+  console.log(data)
   return (
     <div className="searchPage">
       <div className="searchPage__header">
@@ -30,16 +32,16 @@ function SearchPage() {
           <Search hideButtons />
         </div>
       </div>
-      {/* true / term */}
-      {data && term && (
+      {!data && <img src="https://i.gifer.com/4V0b.gif" />}
+      {data && (
         <div className="searchPage__results">
           <p className="searchPage__resultCount">
             About {data['hits']['total']['value']} results for {term}
           </p>
         </div>
       )}
-      {
-        data && data['hits']['hits'].map((item) => (
+      { data &&
+        data['hits']['hits'].map((item) => (
         <div className="searchPage__result">
           <a className="searchPage__resultLink" href={item['_source']['doc']['url']}>
             {item['_source']['doc']['url']}
