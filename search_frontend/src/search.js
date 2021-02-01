@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { actionTypes } from "./reducer";
 import { useStateValue } from "./stateProvider";
 
@@ -17,9 +17,9 @@ client.ping({
     requestTimeout: Infinity,
 }, function (error) {
     if (error) {
-        console.trace('elasticsearch cluster is down!');
+        console.trace('Elasticsearch cluster is down!');
     } else {
-        console.log('All is well');
+        console.log('Elasticsearch cluster is up!');
     }
 });
 

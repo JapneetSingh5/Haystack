@@ -20,14 +20,20 @@
 .searchPage__logo {
     object-fit: contain;
     height: 50px;
-    margin-right: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.linkn_button{
+    text-decoration: none !important;
+    color: #5f6368 !important;
 }
 
 .searchPage__logo2 {
     object-fit: contain;
     height: 50px;
     display: block;
-    margin-left: auto;
+    margin-left: auto !important;
 }
 
 .searchPage__header>.search>.search__input {
@@ -69,23 +75,25 @@
 
 .searchPage__result {
     margin: 0 20px;
-    padding-bottom:10px;
+    padding:10px;
 }
 
 .searchPage__resultCount {
-    margin-left: 10px !important;
+    margin-left: 5% !important;
     color: #70757a;
     font-size: 14px;
 }
 
 .searchPage__results {
-    margin-left: 14px !important;
-    max-width: 650px;
+    margin-left: 5% !important;
+    width: 75%;
+    max-width: 1000px;
 }
 
 .searchPage__resultTitle {
     text-decoration: none;
     margin: 0 !important;
+    overflow: hidden !important;
 }
 
 .searchPage__resultTitle:hover {
@@ -97,8 +105,11 @@
     font-weight: 500;
 }
 
-.searchPage__resultSnippet {
-    margin-top: 10px;
+.searchPage__snippet {
+    margin-top: 5px !important;
+    margin-left: 20px !important;
+    font-weight: 300 !important;
+    font-size: 0.9em !important;
 }
 
 .searchPage__resultLink {
@@ -120,4 +131,14 @@
 .searchPage__headerBody>.search>.search__input {
     margin-left: 0;
     margin-top: 0;
+}
+
+.MuiPaginationItem-root{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.pagination{
+    margin-left: 25% !important;
+    padding-top: 20px;
+    margin-bottom: 20px;
 }
