@@ -1,5 +1,7 @@
 *.class
 *.log
+crawler/dump.json
+crawler/scraped.pickle
 
 # From https://github.com/github/gitignore/blob/master/Python.gitignore
 
