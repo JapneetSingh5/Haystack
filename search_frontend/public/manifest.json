@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Haystack",
+  "name": "Haystack",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://cdn.pixabay.com/photo/2014/12/21/23/53/hay-576266_960_720.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://cdn.pixabay.com/photo/2014/12/21/23/53/hay-576266_960_720.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "https://cdn.pixabay.com/photo/2014/12/21/23/53/hay-576266_960_720.png",
       "type": "image/png",
       "sizes": "512x512"
     }
