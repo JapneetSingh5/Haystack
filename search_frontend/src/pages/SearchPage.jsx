@@ -12,8 +12,9 @@ import RoomIcon from "@material-ui/icons/Room";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Response from "../response";
 import { actionTypes } from "../reducer";
+import logo from './LogoSVGWhiteBG.svg'
 
-function SearchPage() {
+function SearchPage({query}) {
   const [{ term, data }] = useStateValue();
   useSearch(term);
   console.log(term)
@@ -29,27 +30,27 @@ function SearchPage() {
           />
         </Link>
         <div className="searchPage__headerBody">
-          <Search hideButtons />
+          <Search hideButtons query={term} home={false} />
         </div>
+        <img src={logo} alt="DevClub Logo" width="80" className="searchPage__logo2"/>
       </div>
       {!data && <img src="https://i.gifer.com/4V0b.gif" />}
       {data && (
         <div className="searchPage__results">
           <p className="searchPage__resultCount">
-            About {data['hits']['total']['value']} results for {term}
+            About {data['hits']['total']['value']} results for <strong>{term}</strong> ({data['took']} milliseconds)
           </p>
         </div>
       )}
       { data &&
         data['hits']['hits'].map((item) => (
         <div className="searchPage__result">
-          <a className="searchPage__resultLink" href={item['_source']['doc']['url']}>
-            {item['_source']['doc']['url']}
-          </a>
           <a href={item['_source']['doc']['url']} className="searchPage__resultTitle">
             <h2>{item['_source']['doc']['url']}</h2>
           </a>
-          <p className="searchPage__resultSnippet">{item['_source']['doc']['url']}</p>
+          <a className="searchPage__resultLink" href={item['_source']['doc']['url']}>
+            {item['_source']['doc']['url']}
+          </a>
         </div>
       ))
     }
