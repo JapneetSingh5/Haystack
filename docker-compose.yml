@@ -25,7 +25,7 @@ services:
     build: 
       context: ./crawler
       dockerfile: Dockerfile
-    image: "${REGISTRY_NAME}devclubiitd/crawler:0.1"
+    image: "${REGISTRY_NAME}devclubiitd/haystack_crawler:0.1"
     restart: "unless-stopped"
     networks:
       - "internal"
@@ -37,6 +37,22 @@ services:
       - ELASTIC_URI=elastic:9200
     depends_on:
       - mongo
+      - elastic
+
+  frontend:
+    build:
+      context: ./search_frontend
+      dockerfile: Dockerfile
+    image: "${REGISTRY_NAME}devclubiitd/haystack_frontend:0.1"
+    ports:
+      - 3000:80
+    restart: "unless-stopped" 
+    networks:
+      - "internal"
+      - "reverseproxy"
+    environment:
+      - VIRTUAL_HOST
+    depends_on: 
       - elastic
 
 volumes:
