@@ -10,7 +10,10 @@ services:
     restart: "unless-stopped"
 
   elastic:
-    image: "${REGISTRY_NAME}docker.elastic.co/elasticsearch/elasticsearch:7.10.2"
+    build:
+      context: ./elasticsearch
+      dockerfile: Dockerfile
+    image: "${REGISTRY_NAME}devclubiitd/elasticsearch:0.1"
     volumes:
       - elastic_data:/usr/share/elasticsearch/data
     environment:

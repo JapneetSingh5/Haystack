@@ -32,13 +32,13 @@ function SearchPage({query}) {
   // console.log(location['pathname'].split('/')[2])
   useEffect(() => {
     client.search({
-      index: "webpages", // Your index name for example crud 
+      index: "iitd_sites", // Your index name for example crud 
       body: {
         "from": (page-1)*10,
         "size": 10,
         "query": {
           "match": {
-              "doc.body": {
+              "body": {
                   "query" : term ?? location['pathname'].split("/")[2],
               }
           }

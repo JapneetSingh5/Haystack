@@ -28,14 +28,15 @@ const Search = (term, page, size) => {
   // const [data, setData] = useState(null);
   const [searching, setState] = useState(true);
   const [{}, dispatch] = useStateValue();
+  // TODO: Use a environment variable for index
   searching && client.search({
-    index: "webpages", // Your index name for example crud 
+    index: "iitd_sites", // Your index name for example crud 
     body: {
       "from": (page-1)*size,
       "size": size,
       "query": {
         "match": {
-            "doc.body": {
+            "body": {
                 "query" : term,
             }
         }
