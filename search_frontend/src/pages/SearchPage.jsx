@@ -78,15 +78,15 @@ function SearchPage({query}) {
             {data['hits']['total']['value']} hits for '<strong>{term}</strong>' ({data['took']} milliseconds) ・ Couldn't find your needle? <u>Report</u>
           </p>
           {data['hits']['hits'].map((item) => (
-            <div className="searchPage__result" key={item['_source']['doc']['id']}>
-              <a className="searchPage__resultLink" href={item['_source']['doc']['url']}>
-                {item['_source']['doc']['url']}
+            <div className="searchPage__result" key={item['_source']['id']}>
+              <a className="searchPage__resultLink" href={item['_source']['url']}>
+                {item['_source']['url']}
               </a>
-              <a href={item['_source']['doc']['url']} className="searchPage__resultTitle">
-              <h2><img src={`http://www.google.com/s2/favicons?domain=`+item['_source']['doc']['url']}/>{" " + item['_source']['doc']['url']}</h2>
+              <a href={item['_source']['url']} className="searchPage__resultTitle">
+              <h2><img src={`http://www.google.com/s2/favicons?domain=`+item['_source']['url']}/>{" " + item['_source']['url']}</h2>
               </a>
               <div className="searchPage__snippet">
-              {item['_source']['doc']['body'].substr(0, 200)}
+              {item['_source']['body'].substr(0, 200)}
               </div>
             </div>
           ))}
