@@ -75,7 +75,7 @@ function SearchPage({query}) {
       {data && (
         <div className="searchPage__results">
           <p className="searchPage__resultCount">
-            {data['hits']['total']['value']} hits for '<strong>{term}</strong>' ({data['took']} milliseconds) ・ Couldn't find your needle? <u>Report</u>
+            {data['hits']['total']['value']} hits for '<strong>{term ?? location['pathname'].split("/")[2]}</strong>' ({data['took']} milliseconds) ・ Couldn't find your needle? <u>Report</u>
           </p>
           {data['hits']['hits'].map((item) => (
             <div className="searchPage__result" key={item['_source']['id']}>
@@ -83,10 +83,10 @@ function SearchPage({query}) {
                 {item['_source']['url']}
               </a>
               <a href={item['_source']['url']} className="searchPage__resultTitle">
-              <h2><img src={`http://www.google.com/s2/favicons?domain=`+item['_source']['url']}/>{" " + item['_source']['url']}</h2>
+              <h2><img src={`http://www.google.com/s2/favicons?domain=`+item['_source']['url']}/>{" " + item['_source']['title'].slice(7, -8)}</h2>
               </a>
               <div className="searchPage__snippet">
-              {item['_source']['body'].substr(0, 200)}
+              {item['_source']['link_text']}
               </div>
             </div>
           ))}
