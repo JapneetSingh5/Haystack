@@ -10,14 +10,21 @@
 ## :computer: Getting Started
 
 ### Prerequisites
-- Install Elasticsearch
-[:link: Installing ES](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwinus_q4MnuAhUOWX0KHYoEAp0QFjAAegQIBxAC&url=https%3A%2F%2Fwww.elastic.co%2Fguide%2Fen%2Felasticsearch%2Freference%2Fcurrent%2Finstall-elasticsearch.html&usg=AOvVaw2wgLBf8fi_fOCWaAzF5sON)
--Install elastic search for python, Use pip:
-```bash
-pip install scrapydweb
-```
+- Docker
+
 ### :arrow_forward: Start
-1. 
+
+```sh
+docker-compose up --build -d -t 500
+
+cd search_frontend
+npm ci
+npm install react-scripts@3.0.1 -g
+npm run start
+```
+
+**Note:** We specify a high timeout because on receiving SIGINT, the app attempts to
+complete all pending requests and flush them to appropriate databases.
 
 
 ## :building_construction: Built With
@@ -25,15 +32,23 @@ pip install scrapydweb
 - Front End
   - [:link: ReactJS](https://github.com/facebook/react)
 - Back End
+  - [:link: Scrapy](https://github.com/scrapy/scrapy)
   - [:link: MongoDB](https://github.com/mongodb/mongo)
   - [:link: Elasticsearch](https://github.com/elastic/elasticsearch)
-
 
 
 ## :clipboard: Known Issues
 ...
 
 
+<!-- ## Crawler working
+
+We use a Scrapy Spider to crawl webpages, with the initial seed as iitd.ac.in.
+
+We store all data related to pages we've crawled in a database using MongoDB. We
+use Mongo instead of a simple text file or in memory array so we can resume our
+crawl when we restart, scale better, and perhaps even re-crawl sites which were
+crawled before a particular date. -->
 
 
 ## :busts_in_silhouette: Contributors
