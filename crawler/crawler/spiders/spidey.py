@@ -44,13 +44,17 @@ class IITDSpider(CrawlSpider):
     def process_request(self, request: Request, response: Response):
         self.logger.debug('Processing request')
 
-        if ("mongo_doc" not in request.meta):
+        if "mongo_doc" not in request.meta:
             request.meta["mongo_doc"] = self.mongo_collection.find_one_and_update(
                 {"url": request.url},
                 {"$setOnInsert": {"crawl_details": []}},
                 upsert=True,
                 return_document=ReturnDocument.AFTER
             )
+
+        # Drop this request if it has already been crawled
+        if len(request.meta["mongo_doc"]["crawl_details"]) != 0:
+            return None
 
         return request
 
