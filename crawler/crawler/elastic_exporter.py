@@ -46,7 +46,8 @@ def inserter(client, queue):
         client=client,
         index=ELASTIC_INDEX_NAME,
         actions=snoop_queue(mongo_collection, queue, logger),
-        max_retries=5
+        max_retries=5,
+        chunk_size=50,
     ):
         pass
         
