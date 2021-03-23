@@ -1,5 +1,7 @@
+@media (min-width:1000px){
 .searchPage{
-    padding-lef: 20px;
+        padding-left: 20px;
+}
 }
 
 .loader{
@@ -17,24 +19,38 @@
     border-bottom: 1px solid lightgray;
 }
 
-.searchPage__logo {
-    object-fit: contain;
-    height: 50px;
-    margin-right: 20px;
-    margin-left: 20px;
+@media (min-width: 800px){
+    .searchPage__logo {
+        object-fit: contain;
+        height: 50px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .searchPage__logo2 {
+        object-fit: contain;
+        height: 50px;
+        display: block;
+        margin-left: auto !important;
+    }
+    
 }
-
+@media (max-width: 800px){
+    .searchPage__logo {
+        object-fit: contain;
+        height: 30px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .searchPage__logo2 {
+        visibility: hidden;
+    }
+}
 .linkn_button{
     text-decoration: none !important;
     color: #5f6368 !important;
 }
 
-.searchPage__logo2 {
-    object-fit: contain;
-    height: 50px;
-    display: block;
-    margin-left: auto !important;
-}
+
 
 .searchPage__header>.search>.search__input {
     margin-top: 0;
@@ -60,17 +76,17 @@
 }
 
 .searchPage__optionsRight {
-    margin-left: 20px;
+    padding-left: 20px;
 }
 
 .searchPage__option {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    padding-right: 20px;
 }
 
 .searchPage__option a {
-    margin-left: 5px;
+    padding-left: 5px;
 }
 
 .searchPage__result {
@@ -79,16 +95,25 @@
 }
 
 .searchPage__resultCount {
-    margin-left: 5% !important;
+    padding-left: 5% !important;
     color: #70757a;
     font-size: 14px;
 }
 
-.searchPage__results {
-    margin-left: 5% !important;
-    width: 75%;
-    max-width: 1000px;
+@media (min-width: 1000px) {
+    .searchPage__results {
+        padding-left: 5% !important;
+        max-width: 1000px;
+        width: 75%;
+    }
 }
+
+@media (max-width: 1000px){
+    .searchPage__results {
+        width: 96%;
+    }
+}
+
 
 .searchPage__resultTitle {
     text-decoration: none;
@@ -107,25 +132,23 @@
 
 .searchPage__snippet {
     margin-top: 5px !important;
-    margin-left: 20px !important;
+    padding-left: 20px !important;
     font-weight: 300 !important;
     font-size: 0.9em !important;
 }
 
 .searchPage__resultLink {
-    display: flex;
     align-items: center;
     text-decoration: none;
     color: #000;
     margin-bottom: 3px;
-    margin-left: 22px;
 }
 
 .searchPage__resultImage {
     object-fit: contain;
     height: 50px;
     width: 50px;
-    margin-right: 10px;
+    padding-right: 10px;
 }
 
 .searchPage__headerBody>.search>.search__input {
@@ -138,7 +161,7 @@
 }
 
 .pagination{
-    margin-left: 25% !important;
+    padding-left: 20% !important;
     padding-top: 20px;
     margin-bottom: 20px;
 }

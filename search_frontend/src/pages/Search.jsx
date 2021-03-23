@@ -9,7 +9,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useLocation } from 'react-router';
 
 
-function Search({ hideButtons = false, query = ""}) {
+function Search({ hideButtons = false, query = "", qty}) {
   const location = useLocation();
   const [{}, dispatch] = useStateValue();
   const [input, setInput] = useState(query);
@@ -33,12 +33,17 @@ function Search({ hideButtons = false, query = ""}) {
       </div>
 
       {!hideButtons ? (
+        <>
         <div className="search__buttons">
           <Button type="submit" onClick={search} variant="outlined">
             Haystack Search
           </Button>
           <Button variant="outlined"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="linkn_button">I'm Feeling Lucky</a></Button>
         </div>
+        <div className="search__buttons_text">
+        {qty} pages indexed, adding more every minute !
+        </div>
+        </>
       ) : (
         <div className="search__buttonsHidden">
           <Button

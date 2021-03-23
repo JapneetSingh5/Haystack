@@ -42,6 +42,13 @@
     justify-content: center;
 }
 
+.search__buttons_text {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    color: gray;
+}
+
 .search__buttons button {
     margin: 5px;
     background-color: #f8f8f8;

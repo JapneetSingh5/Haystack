@@ -8,6 +8,7 @@ import { useLocation } from 'react-router';
 import Search from "./Search";
 import logo from './LogoSVGWhiteBG.svg'
 import Pagination from '@material-ui/lab/Pagination';
+import Footer from './Footer';
 import qs from "qs";
 
 var elasticsearch = require('elasticsearch');
@@ -21,8 +22,6 @@ var client = new elasticsearch.Client({
 
 function SearchPage({query}) {
   const [{ term, data }, dispatch] = useStateValue();
-  // const [{}, dispatch] = useStateValue();
-  // triggerSearch(term, 1, 10);
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
     setPage(value);
@@ -53,9 +52,8 @@ function SearchPage({query}) {
     }, function (err) {
       console.log(err.message);
     });
-  }, [term, page])
-  // console.log(term)
-  // console.log(data)
+  }, [page, term])
+
   return (
     <div className="searchPage">
       <div className="searchPage__header">
@@ -63,7 +61,7 @@ function SearchPage({query}) {
           <img
             className="searchPage__logo"
             src="https://cdn.pixabay.com/photo/2014/12/21/23/53/hay-576266_960_720.png"
-            alt=""
+            alt="Haystack Logo"
           />
         </Link>
         <div className="searchPage__headerBody">
@@ -93,7 +91,9 @@ function SearchPage({query}) {
         </div>
       )}
     {data && data['hits']['total']['value']>0 && <div className="pagination"><Pagination count={data['hits']['total']['value']%10===0 ? data['hits']['total']['value']/10 : parseInt(data['hits']['total']['value']/10)+1 }  page={page} onChange={handleChange}/></div>}
+    <Footer />
     </div>
+
   );
 }
 
