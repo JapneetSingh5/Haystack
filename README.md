@@ -1,6 +1,7 @@
 # Haystack: A search engine built for IIT Delhi - quickly search across all official IITD Webpages!
 
-##
+## The project is active and has moved to https://github.com/devclub-iitd/HayStack. <br> This repository is no longer being maintained. 
+
 <img width="600" alt="Screen Shot 2021-02-02 at 4 06 29 AM" src="https://user-images.githubusercontent.com/54809290/106526743-233ac880-650c-11eb-96bb-583f5d2ffdc1.png">
 
 ## :star: Features
